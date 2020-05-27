@@ -24,7 +24,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.database_name = "capstone_test"
         self.database_path = "postgres://{}/{}".format(
             'localhost:5432', self.database_name)
-        setup_db(self.app, self.database_path)
+        setup_db(self.app)
 
         self.new_actor = {
             'name': 'Daniel Craig',
@@ -59,7 +59,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertTrue(data['actors'])
 
-# test GET for movies failure
+# test GET for actors failure
 
     def test_get_actors_failure(self):
 
@@ -151,73 +151,13 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertTrue(len(movies_after) == len(movies_before))
 
-# test DELETE for actors as casting director
-
-    def test_delete_actor_director(self):
-
-        actors_before = Actor.query.all()
-
-        response = self.client().delete('/actors/14', headers={ "Authorization": "Bearer {}".format(self.director)})
-        data = json.loads(response.data)
-
-        actors_after = Actor.query.all()
-
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(data['success'], True)
-        self.assertTrue(len(actors_before) - len(actors_after) == 1)
-
-# test DELETE failure for actors as casting director
-
-    def test_delete_actor_failure_director(self):
-
-        actors_before = Actor.query.all()
-
-        response = self.client().delete('/actors/10000', headers={ "Authorization": "Bearer {}".format(self.director)})
-        data = json.loads(response.data)
-
-        actors_after = Actor.query.all()
-
-        self.assertEqual(response.status_code, 404)
-        self.assertEqual(data['success'], False)
-        self.assertTrue(len(actors_before) == len(actors_after))
-
-# test DELETE for movies as executive producer
-
-    def test_delete_movie_producer(self):
-
-        movies_before = Movie.query.all()
-
-        response = self.client().delete('/movies/4', headers={ "Authorization": "Bearer {}".format(self.producer)})
-        data = json.loads(response.data)
-
-        movies_after = Movie.query.all()
-
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(data['success'], True)
-        self.assertTrue(len(movies_before) - len(movies_after) == 1)
-
-# test DELETE failure for movies as executive producer
-
-    def test_delete_movie_failure_producer(self):
-
-        movies_before = Movie.query.all()
-
-        response = self.client().delete('/movies/100000', headers={ "Authorization": "Bearer {}".format(self.producer)})
-        data = json.loads(response.data)
-
-        movies_after = Movie.query.all()
-
-        self.assertEqual(response.status_code, 404)
-        self.assertEqual(data['success'], False)
-        self.assertTrue(len(movies_before) == len(movies_after))
-
 # test PATCH for actors as casting director
 
     def test_patch_actor_director(self):
 
         actors_before = Actor.query.all()
 
-        response = self.client().patch('/actors/20', json=self.new_actor, headers={ "Authorization": "Bearer {}".format(self.director)})
+        response = self.client().patch('/actors/1', json=self.new_actor, headers={ "Authorization": "Bearer {}".format(self.director)})
         data = json.loads(response.data)
 
         actors_after = Actor.query.all()
