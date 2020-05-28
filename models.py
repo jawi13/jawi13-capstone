@@ -1,16 +1,15 @@
-import os
 from sqlalchemy import Column, String, Integer
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 
 db = SQLAlchemy()
+
 
 def setup_db(app):
     app.config.from_object('config')
     db.app = app
     db.init_app(app)
     db.create_all()
-    migrate = Migrate(app, db)
+
 
 class Actor(db.Model):
     __tablename__ = 'actor'
@@ -42,6 +41,7 @@ class Actor(db.Model):
             'age': self.age,
             'gender': self.gender
         }
+
 
 class Movie(db.Model):
     __tablename__ = 'movie'

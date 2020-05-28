@@ -10,7 +10,8 @@ from models import setup_db, Actor, Movie
 # load .env file
 load_dotenv()
 
-# define and initiate the test case 
+# define and initiate the test case
+
 
 class CapstoneTestCase(unittest.TestCase):
 
@@ -52,7 +53,9 @@ class CapstoneTestCase(unittest.TestCase):
 
     def test_get_actors_assistant(self):
 
-        response = self.client().get('/actors', headers={ "Authorization": "Bearer {}".format(self.assistant)})
+        response = self.client().get(
+            '/actors', headers={"Authorization":
+                                "Bearer {}".format(self.assistant)})
         data = json.loads(response.data)
 
         self.assertEqual(response.status_code, 200)
@@ -69,12 +72,13 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 401)
         self.assertEqual(data['success'], False)
 
-
 # test GET for movies as casting assistant
 
     def test_get_movies_assistant(self):
 
-        response = self.client().get('/movies', headers={ "Authorization": "Bearer {}".format(self.assistant)})
+        response = self.client().get(
+            '/movies', headers={"Authorization":
+                                "Bearer {}".format(self.assistant)})
         data = json.loads(response.data)
 
         self.assertEqual(response.status_code, 200)
@@ -97,7 +101,10 @@ class CapstoneTestCase(unittest.TestCase):
 
         actors_before = Actor.query.all()
 
-        response = self.client().post('/actors', json=self.new_actor, headers={ "Authorization": "Bearer {}".format(self.director)})
+        response = self.client().post('/actors', json=self.new_actor,
+                                      headers={"Authorization":
+                                               "Bearer {}"
+                                               .format(self.director)})
         data = json.loads(response.data)
 
         actors_after = Actor.query.all()
@@ -112,7 +119,10 @@ class CapstoneTestCase(unittest.TestCase):
 
         actors_before = Actor.query.all()
 
-        response = self.client().post('/actors', json=self.new_actor, headers={ "Authorization": "Bearer {}".format(self.assistant)})
+        response = self.client().post('/actors', json=self.new_actor,
+                                      headers={"Authorization":
+                                               "Bearer {}"
+                                               .format(self.assistant)})
         data = json.loads(response.data)
 
         actors_after = Actor.query.all()
@@ -127,7 +137,10 @@ class CapstoneTestCase(unittest.TestCase):
 
         movies_before = Movie.query.all()
 
-        response = self.client().post('/movies', json=self.new_movie, headers={ "Authorization": "Bearer {}".format(self.producer)})
+        response = self.client().post('/movies', json=self.new_movie,
+                                      headers={"Authorization":
+                                               "Bearer {}"
+                                               .format(self.producer)})
         data = json.loads(response.data)
 
         movies_after = Movie.query.all()
@@ -142,7 +155,10 @@ class CapstoneTestCase(unittest.TestCase):
 
         movies_before = Movie.query.all()
 
-        response = self.client().post('/movies', json={}, headers={ "Authorization": "Bearer {}".format(self.producer)})
+        response = self.client().post('/movies', json={},
+                                      headers={"Authorization":
+                                               "Bearer {}"
+                                               .format(self.producer)})
         data = json.loads(response.data)
 
         movies_after = Movie.query.all()
@@ -157,7 +173,10 @@ class CapstoneTestCase(unittest.TestCase):
 
         actors_before = Actor.query.all()
 
-        response = self.client().patch('/actors/1', json=self.new_actor, headers={ "Authorization": "Bearer {}".format(self.director)})
+        response = self.client().patch('/actors/1', json=self.new_actor,
+                                       headers={"Authorization":
+                                                "Bearer {}"
+                                                .format(self.director)})
         data = json.loads(response.data)
 
         actors_after = Actor.query.all()
@@ -172,7 +191,10 @@ class CapstoneTestCase(unittest.TestCase):
 
         actors_before = Actor.query.all()
 
-        response = self.client().patch('/actors/1', json={}, headers={ "Authorization": "Bearer {}".format(self.director)})
+        response = self.client().patch('/actors/1', json={},
+                                       headers={"Authorization":
+                                                "Bearer {}"
+                                                .format(self.director)})
         data = json.loads(response.data)
 
         actors_after = Actor.query.all()
@@ -187,7 +209,10 @@ class CapstoneTestCase(unittest.TestCase):
 
         movies_before = Movie.query.all()
 
-        response = self.client().patch('/movies/8', json=self.new_movie, headers={ "Authorization": "Bearer {}".format(self.director)})
+        response = self.client().patch('/movies/8', json=self.new_movie,
+                                       headers={"Authorization":
+                                                "Bearer {}"
+                                                .format(self.director)})
         data = json.loads(response.data)
 
         movies_after = Movie.query.all()
@@ -202,7 +227,10 @@ class CapstoneTestCase(unittest.TestCase):
 
         movies_before = Movie.query.all()
 
-        response = self.client().patch('/movies/1', json={}, headers={ "Authorization": "Bearer {}".format(self.director)})
+        response = self.client().patch('/movies/1', json={},
+                                       headers={"Authorization":
+                                                "Bearer {}"
+                                                .format(self.director)})
         data = json.loads(response.data)
 
         movies_after = Movie.query.all()
@@ -210,6 +238,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 404)
         self.assertEqual(data['success'], False)
         self.assertTrue(len(movies_before) == len(movies_after))
+
 
 if __name__ == "__main__":
     unittest.main()
