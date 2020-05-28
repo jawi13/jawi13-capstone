@@ -157,7 +157,11 @@ PATCH 'actors/<int:actor_id>'
 "gender": "Female"
 }
 
+```
+
 - response:
+
+```
 
 {
   "actor": {
