@@ -1,16 +1,16 @@
-Capstone Project for Udacity FSND
+# Capstone Project for Udacity FSND
 
 - Heroku Link: https://jawi13-capstone.herokuapp.com/
 
-Motivation for Project
+## Motivation for Project
 
-- This project has been completed as a requirement of the Udacity Full Stack Web Developer Nanodegree. It is the last of 5 projects completed over a 4 month period, and combines the learnings from the first 4 projects.
+This project has been completed as a requirement of the Udacity Full Stack Web Developer Nanodegree. It is the last of 5 projects completed over a 4 month period, and combines the learnings from the first 4 projects.
 
-Project dependencies
+## Project dependencies
 
 - Python 3.7- Download from https://www.python.org/downloads/
 
-Pip dependencies
+## Pip dependencies
 
 In a terminal, from the root folder of the project, run:
 
@@ -22,7 +22,7 @@ pip install -r requirements.txt
 
 This will install the packages required to run the application in your local environment.
 
-Running the server
+## Running the server
 
 To run the server, execute the following commands in your terminal:
 
@@ -33,20 +33,20 @@ flask run --reload
 
 ```
 
-API Behaviour
+## API Behaviour
 
-Models
+### Models
 
 - Actor- name (string), age (int), gender (string)-
 - Movie- title (string), release year (int)
 
-Roles (Permissions)
+### Roles (Permissions)
 
 - Casting Assistant (GET:actors, GET:movies)
 - Casting Director (GET:actors, GET:movies, POST:actors, DELETE:actors, PATCH:actors, PATCH:movies)
 - Casting Director (GET:actors, GET:movies, POST:actors, POST:movies, DELETE:actors, DELETE:movies, PATCH:actors, PATCH:movies)
 
-JWT Tokens
+### JWT Tokens
 
 Valid JWT tokens are located in the .env file for each role for testing purposes:
 
@@ -72,7 +72,7 @@ Use the following login details for test accounts to retrieve the tokens:
     - email: producer@test.com
     - password: Producer1
 
-Endpoints
+### Endpoints
 
 There are two API endpoints, one for each model, Actor and Movie. Each endpoint allows GET, POST, DELETE and PATCH methods. Remember to include a valid JWT Bearer token with the correct permissions in the request header for the request to be successful.
 
@@ -268,7 +268,7 @@ PATCH 'movies/<int:movie_id>'
 
 ```
 
-Testing
+## Testing
 
 To run the unit tests, from the root folder of the project directory, run in your terminal:
 
