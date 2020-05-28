@@ -14,7 +14,11 @@ Pip dependencies
 
 In a terminal, from the root folder of the project, run:
 
+```
+
 pip install -r requirements.txt
+
+```
 
 This will install the packages required to run the application in your local environment.
 
@@ -22,8 +26,12 @@ Running the server
 
 To run the server, execute the following commands in your terminal:
 
+```
+
 export FLASK_APP=app.py
 flask run --reload
+
+```
 
 API Behaviour
 
@@ -72,6 +80,8 @@ GET 'actors'
 
 - response:
 
+```
+
 {
   "actors": {
     "1": {
@@ -90,9 +100,13 @@ GET 'actors'
   "success": true
 }
 
+```
+
 POST 'actors'
 
 - request body:
+
+```
 
 {
 "age": 37,
@@ -100,7 +114,11 @@ POST 'actors'
 "gender": "Female"
 }
 
+```
+
 - response:
+
+```
 
 {
   "actor": {
@@ -112,18 +130,26 @@ POST 'actors'
   "success": true
 }
 
+```
+
 DELETE 'actors/<int:actor_id>'
 
 - response:
+
+```
 
 {
   "deleted": 3,
   "success": true
 }
 
+```
+
 PATCH 'actors/<int:actor_id>'
 
 - request body:
+
+```
 
 {
 "age": 37,
@@ -143,9 +169,13 @@ PATCH 'actors/<int:actor_id>'
   "success": true
 }
 
+```
+
 GET 'movies'
 
 - response:
+
+```
 
 {
   "movies": {
@@ -163,16 +193,24 @@ GET 'movies'
   "success": true
 }
 
+```
+
 POST 'movies'
 
 - request body:
+
+```
 
 {
 "release_year": 2019,
 "title": "Joker"
 }
 
+```
+
 - response:
+
+```
 
 {
   "movie": {
@@ -183,25 +221,37 @@ POST 'movies'
   "success": true
 }
 
+```
+
 DELETE 'movies/<int:movie_id>'
 
 - response:
+
+```
 
 {
   "deleted": 3,
   "success": true
 }
 
+```
+
 PATCH 'movies/<int:movie_id>'
 
 - request body:
+
+```
 
 {
 "release_year": 2019,
 "title": "Joker"
 }
 
+```
+
 - response:
+
+```
 
 {
   "movie": {
@@ -212,8 +262,14 @@ PATCH 'movies/<int:movie_id>'
   "success": true
 }
 
+```
+
 Testing
 
 To run the unit tests, from the root folder of the project directory, run in your terminal:
 
+```
+
 python test_app.py
+
+```
